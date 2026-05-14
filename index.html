@@ -464,49 +464,32 @@ document.getElementById('kdsForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Sayfa yenilenmesini engeller
     
     var form = event.target;
-    var emailField = document.getElementById('emailInput');
-    var emailValue = emailField.value.trim().toLowerCase();
     var buton = document.getElementById('gonderButon');
     var basariKutusu = document.getElementById('basariMesaji');
-    
-    // E-posta uzantı doğrulaması
-    var validEmailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|net|org|gov|edu|com\.tr|net\.tr|org\.tr|edu\.tr|me|info|biz|co|tr)$/;
-    
-    if (!validEmailPattern.test(emailValue)) {
-        emailField.setCustomValidity("Lütfen geçerli bir e-posta uzantısı giriniz (Örn: .com, .com.tr).");
-        emailField.reportValidity();
-        return;
-    }
     
     buton.innerText = "Gönderiliyor...";
     buton.disabled = true;
     
     var data = new FormData(form);
     
-    // Doğrudan Formspree sunucusuna güvenli bağlantı
+    // Doğrudan Formspree sunucusuna bağlantı
     fetch('formspree.io', {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
     }).then(function(response) {
         if (response.ok) {
-            form.reset(); // GÖNDERME BAŞARILI OLUNCA TÜM KUTULARI VE YAZILARI SİLER
+            form.reset(); // GÖNDERME İŞLEMİ BİTTİĞİ AN TÜM YAZILARI SİLER
             if (basariKutusu) {
-                basariKutusu.style.display = 'block'; // Varsa başarı mesajı kutusunu gösterir
+                basariKutusu.style.display = 'block'; // Varsa başarı kutusunu açar
             }
-        } else {
-            alert("Bir hata oluştu, lütfen tekrar deneyin.");
         }
-    }).catch(function(error) {
-        alert("Bağlantı hatası oluştu.");
+    }).catch(function() {
+        // Hata mesajları tamamen silindi, arka plan kilitlenmez
     }).finally(function() {
         buton.innerText = "Mesajı Gönder";
         buton.disabled = false;
     });
-});
-
-document.getElementById('emailInput').addEventListener('input', function() {
-    this.setCustomValidity("");
 });
 </script>
 
