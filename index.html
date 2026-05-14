@@ -413,15 +413,16 @@ html_content = '''<!DOCTYPE html>
         <input type="text" name="Ad_Soyad" placeholder="Adınız ve soyadınız" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;">
     </div>
 
-    <div style="margin-bottom: 20px;">
+    <    <div style="margin-bottom: 20px;">
         <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">E-Posta</label>
         <input type="email" name="E_Posta" placeholder="E-posta adresiniz" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;">
     </div>
 
     <div style="margin-bottom: 20px;">
         <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Telefon</label>
-        <input type="tel" name="Telefon" placeholder="Telefon numaranız" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;">
+        <input type="tel" name="Telefon" placeholder="Telefon numaranız" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;" oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]{10,11}" title="Lütfen sadece rakamlardan oluşan geçerli bir telefon numarası giriniz.">
     </div>
+
 
     <div style="margin-bottom: 20px;">
         <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Konu</label>
