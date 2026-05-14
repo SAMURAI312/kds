@@ -403,77 +403,112 @@ html_content = '''<!DOCTYPE html>
                     
 
                     <!-- form arka plan-->
+
+
+                <div style="background-color: #1a1a1a; padding: 25px; border-radius: 8px; max-width: 500px; margin: 20px auto; font-family: sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+    
+    <!-- Başarı Mesajı Kutusu (İlk başta gizlidir, form gönderilince açılır) -->
+    <div id="basariMesaji" style="display: none; background-color: #ffcc00; color: #000; padding: 15px; border-radius: 4px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 16px;">
+        ✓ Mesajınız başarıyla gönderildi! Kutular temizlendi.
+    </div>
                    <form
                       action="https://formspree.io/f/mwvyzyno"
                       method="POST"
                     >
     
    
-    
     <div style="margin-bottom: 20px;">
-        <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Ad Soyad</label>
-        <input type="text" name="Ad_Soyad" placeholder="Adınız ve soyadınız" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;" 
-               pattern="^[A-Za-zÇçĞğİıÖöŞşÜü]{2,}\s[A-Za-zÇçĞğİıÖöŞşÜü]{2,}(\s[A-Za-zÇçĞğİıÖöŞşÜü]{2,})*$" 
-               title="Lütfen aralarında en az bir boşluk bırakarak gerçek adınızı ve soyadınızı yazınız (Örn: Ahmet Yılmaz).">
-    </div>
+            <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Ad Soyad</label>
+            <input type="text" name="Ad_Soyad" placeholder="Adınız ve soyadınız" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;" 
+                   pattern="^[A-Za-zÇçĞğİıÖöŞşÜü]{2,}\s[A-Za-zÇçĞğİıÖöŞşÜü]{2,}(\s[A-Za-zÇçĞğİıÖöŞşÜü]{2,})*$" 
+                   title="Lütfen aralarında en az bir boşluk bırakarak gerçek adınızı ve soyadınızı yazınız (Örn: Ahmet Yılmaz).">
+        </div>
 
-    <div style="margin-bottom: 20px;">
-        <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">E-Posta</label>
-        <!-- id="emailInput" ekledik, JavaScript buradan kontrol edecek -->
-        <input type="email" id="emailInput" name="E_Posta" placeholder="E-posta adresiniz" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;">
-    </div>
+        <div style="margin-bottom: 20px;">
+            <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">E-Posta</label>
+            <input type="email" id="emailInput" name="E_Posta" placeholder="E-posta adresiniz" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;">
+        </div>
 
-    <div style="margin-bottom: 20px;">
-        <label style="color: #ffcc00; display: block; font-weight: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Telefon</label>
-        <input type="tel" name="Telefon" placeholder="0555 555 55 55" required maxlength="14" style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;" 
-               pattern="0[0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}" 
-               title="Lütfen telefon numaranızı 0555 555 55 55 formatında 11 hane olarak giriniz." 
-               oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^([0-9]{4})([0-9]{3})([0-9]{2})([0-9]{2})$/, '$1 $2 $3 $4').substring(0, 14);">
-    </div>
+        <div style="margin-bottom: 20px;">
+            <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Telefon</label>
+            <input type="tel" name="Telefon" placeholder="0555 555 55 55" required maxlength="14" style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;" 
+                   pattern="0[0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}" 
+                   title="Lütfen telefon numaranızı 0555 555 55 55 formatında 11 hane olarak giriniz." 
+                   oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^([0-9]{4})([0-9]{3})([0-9]{2})([0-9]{2})$/, '$1 $2 $3 $4').substring(0, 14);">
+        </div>
 
-    <div style="margin-bottom: 20px;">
-        <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Konu</label>
-        <select name="Konu" style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box; cursor: pointer;">
-            <option value="Uyelik Bilgisi">Üyelik Bilgisi</option>
-            <option value="Ders Programi">Ders Programı / Saatler</option>
-            <option value="Fiyat Bilgisi">Fiyat Bilgisi</option>
-            <option value="Diger">Diğer</option>
-        </select>
-    </div>
+        <div style="margin-bottom: 20px;">
+            <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Konu</label>
+            <select name="Konu" style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box; cursor: pointer;">
+                <option value="Uyelik Bilgisi">Üyelik Bilgisi</option>
+                <option value="Ders Programi">Ders Programı / Saatler</option>
+                <option value="Fiyat Bilgisi">Fiyat Bilgisi</option>
+                <option value="Diger">Diğer</option>
+            </select>
+        </div>
 
-    <div style="margin-bottom: 25px;">
-        <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Mesajınız</label>
-        <textarea name="Mesaj" placeholder="Mesajınızı buraya yazın..." rows="5" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box; resize: vertical; font-family: sans-serif;"></textarea>
-    </div>
+        <div style="margin-bottom: 25px;">
+            <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Mesajınız</label>
+            <textarea name="Mesaj" placeholder="Mesajınızı buraya yazın..." rows="5" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box; resize: vertical; font-family: sans-serif;"></textarea>
+        </div>
 
-    <button type="submit" style="width: 100%; padding: 14px; background-color: #ffcc00; color: #000; border: none; border-radius: 4px; font-weight: bold; font-size: 16px; cursor: pointer; text-transform: uppercase;">Mesajı Gönder</button>
+        <button type="submit" id="gonderButon" style="width: 100%; padding: 14px; background-color: #ffcc00; color: #000; border: none; border-radius: 4px; font-weight: bold; font-size: 16px; cursor: pointer; text-transform: uppercase;">Mesajı Gönder</button>
 
-</form>
+    </form>
+</div>
 
-<!-- SAHTE UZANTILARI ANINDA YAKALAYAN GÜVENLİ SCRIPT -->
+<!-- KONTROL EDEN VE İÇERİĞİ SİLEN GELİŞMİŞ SCRIPT -->
 <script>
 document.getElementById('kdsForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Sayfa yenilenmesini ve Formspree sayfasına gitmeyi engelle
+    
+    var form = event.target;
     var emailField = document.getElementById('emailInput');
     var emailValue = emailField.value.trim().toLowerCase();
+    var buton = document.getElementById('gonderButon');
+    var basariKutusu = document.getElementById('basariMesaji');
     
-    // Sadece gerçek dünyada var olan popüler uzantıların formatı (Filtre)
+    // 1. ADIM: E-posta gerçek uzantı kontrolü
     var validEmailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|net|org|gov|edu|com\.tr|net\.tr|org\.tr|edu\.tr|me|info|biz|co|tr)$/;
     
-    // Eğer girilen e-posta bu gerçek uzantılardan birine uymuyorsa
     if (!validEmailPattern.test(emailValue)) {
-        event.preventDefault(); // Formun gönderilmesini kesin olarak durdur
         emailField.setCustomValidity("Lütfen geçerli ve bilinen bir e-posta uzantısı giriniz (Örn: .com, .com.tr, .net).");
-        emailField.reportValidity(); // Kırmızı hata balonunu ekranda göster
-    } else {
-        emailField.setCustomValidity(""); // Sorun yoksa hatayı temizle ve gönder
+        emailField.reportValidity();
+        return; // Hata varsa kodu burada durdur, mesajı gönderme
     }
+    
+    // 2. ADIM: Arka planda gizlice Formspree'ye gönderme (AJAX)
+    buton.innerText = "Gönderiliyor...";
+    buton.disabled = true;
+    
+    var data = new FormData(form);
+    
+    fetch('formspree.io', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    }).then(function(response) {
+        if (response.ok) {
+            // 3. ADIM: Başarılıysa yazıları temizle ve bildirimi göster
+            form.reset(); // FORMDAKİ TÜM BİLGİLERİ VE YAZILARI SİLER
+            basariKutusu.style.display = 'block'; // Başarı yazısını göster
+            window.scrollTo({ top: basariKutusu.offsetTop - 50, behavior: 'smooth' }); // Sayfayı mesaja kaydır
+        } else {
+            alert("Bir hata oluştu, lütfen tekrar deneyin.");
+        }
+    }).catch(function(error) {
+        alert("Bağlantı hatası oluştu.");
+    }).finally(function() {
+        buton.innerText = "Mesajı Gönder";
+        buton.disabled = false;
+    });
 });
 
-// Kullanıcı kutuya tekrar yazı yazmaya başladığında hatayı temizle
 document.getElementById('emailInput').addEventListener('input', function() {
     this.setCustomValidity("");
 });
 </script>
+
                
             </div>
         </div>
