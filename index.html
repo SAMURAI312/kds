@@ -468,10 +468,7 @@ document.getElementById('kdsForm').addEventListener('submit', function(event) {
     var buton = document.getElementById('gonderButon');
     
     // Butonu geçici olarak kilitle (Çift gönderimi önlemek için)
-    if(buton) {
-        buton.innerText = "Gönderiliyor...";
-        buton.disabled = true;
-    }
+    
     
     // 2. Form verilerini hazırla
     var data = new FormData(form);
@@ -484,7 +481,7 @@ document.getElementById('kdsForm').addEventListener('submit', function(event) {
     })
     .then(function(response) {
         // 4. Sunucu veriyi kabul ettiyse içindeki tüm yazıları sil temizle
-        if (response.ok) {
+      
             form.reset(); 
         }
     })
@@ -492,13 +489,7 @@ document.getElementById('kdsForm').addEventListener('submit', function(event) {
         // Hata durumunda hiçbir popup/alert penceresi açma, formu kilitleme
         console.log("Bağlantı detayı:", error);
     })
-    .finally(function() {
-        // İşlem bitince butonu eski orijinal haline geri getir
-        if(buton) {
-            buton.innerText = "Mesajı Gönder";
-            buton.disabled = false;
-        }
-    });
+   
 });
 </script>
 
