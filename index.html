@@ -461,34 +461,43 @@ html_content = '''<!DOCTYPE html>
 <!-- KONTROL EDEN VE İÇERİĞİ SİLEN GELİŞMİŞ SCRIPT -->
 <script>
 document.getElementById('kdsForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Sayfa yenilenmesini engeller
+    // 1. Formun normal sayfa yenileme/yönlendirme yapmasını engelle
+    event.preventDefault();
     
     var form = event.target;
     var buton = document.getElementById('gonderButon');
-    var basariKutusu = document.getElementById('basariMesaji');
     
-    buton.innerText = "Gönderiliyor...";
-    buton.disabled = true;
+    // Butonu geçici olarak kilitle (Çift gönderimi önlemek için)
+    if(buton) {
+        buton.innerText = "Gönderiliyor...";
+        buton.disabled = true;
+    }
     
+    // 2. Form verilerini hazırla
     var data = new FormData(form);
     
-    // Doğrudan Formspree sunucusuna bağlantı
+    // 3. Veriyi arka planda sessizce Formspree'ye fırlat
     fetch('formspree.io', {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
-    }).then(function(response) {
+    })
+    .then(function(response) {
+        // 4. Sunucu veriyi kabul ettiyse içindeki tüm yazıları sil temizle
         if (response.ok) {
-            form.reset(); // GÖNDERME İŞLEMİ BİTTİĞİ AN TÜM YAZILARI SİLER
-            if (basariKutusu) {
-                basariKutusu.style.display = 'block'; // Varsa başarı kutusunu açar
-            }
+            form.reset(); 
         }
-    }).catch(function() {
-        // Hata mesajları tamamen silindi, arka plan kilitlenmez
-    }).finally(function() {
-        buton.innerText = "Mesajı Gönder";
-        buton.disabled = false;
+    })
+    .catch(function(error) {
+        // Hata durumunda hiçbir popup/alert penceresi açma, formu kilitleme
+        console.log("Bağlantı detayı:", error);
+    })
+    .finally(function() {
+        // İşlem bitince butonu eski orijinal haline geri getir
+        if(buton) {
+            buton.innerText = "Mesajı Gönder";
+            buton.disabled = false;
+        }
     });
 });
 </script>
