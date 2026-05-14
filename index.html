@@ -494,15 +494,12 @@ document.getElementById('kdsForm').addEventListener('submit', function(event) {
             form.reset(); // FORMDAKİ TÜM BİLGİLERİ VE YAZILARI SİLER
             basariKutusu.style.display = 'block'; // Başarı yazısını göster
             window.scrollTo({ top: basariKutusu.offsetTop - 50, behavior: 'smooth' }); // Sayfayı mesaja kaydır
-        } else {
-            alert("Bir hata oluştu, lütfen tekrar deneyin.");
-        }
-    }).catch(function(error) {
-        alert("Bağlantı hatası oluştu.");
+        
+    
     }).finally(function() {
         buton.innerText = "Mesajı Gönder";
         buton.disabled = false;
-    });
+   
 });
 
 document.getElementById('emailInput').addEventListener('input', function() {
