@@ -420,7 +420,7 @@ html_content = '''<!DOCTYPE html>
 
     <div style="margin-bottom: 20px;">
         <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Telefon</label>
-        <input type="tel" name="Telefon" placeholder="Telefon numaranız" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;" oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]{10,11}" title="Lütfen sadece rakamlardan oluşan geçerli bir telefon numarası giriniz.">
+        <input type="tel" name="Telefon" placeholder="0555 555 55 55" required maxlength="14" style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;" pattern="0[0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}" title="Lütfen telefon numaranızı 0555 555 55 55 formatında 11 hane olarak giriniz." oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^([0-9]{4})([0-9]{3})([0-9]{2})([0-9]{2})$/, '$1 $2 $3 $4').substring(0, 14);">
     </div>
 
 
