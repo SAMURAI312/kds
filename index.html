@@ -408,21 +408,31 @@ html_content = '''<!DOCTYPE html>
                       method="POST"
                     >
     
+   
+    <!-- 1. AD SOYAD: En az iki kelime, harfler tekrarlı anlamsız olamaz -->
     <div style="margin-bottom: 20px;">
         <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Ad Soyad</label>
-        <input type="text" name="Ad_Soyad" placeholder="Adınız ve soyadınız" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;">
+        <input type="text" name="Ad_Soyad" placeholder="Adınız ve soyadınız" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;" 
+               pattern="^[A-Za-zÇçĞğİıÖöŞşÜü]{2,}\s[A-Za-zÇçĞğİıÖöŞşÜü]{2,}(\s[A-Za-zÇçĞğİıÖöŞşÜü]{2,})*$" 
+               title="Lütfen aralarında en az bir boşluk bırakarak gerçek adınızı ve soyadınızı yazınız (Örn: Ahmet Yılmaz).">
     </div>
 
-    <    <div style="margin-bottom: 20px;">
+    <!-- 2. E-POSTA: Sadece gerçek dünyada var olan popüler uzantıları kabul eder (.kjm gibi uydurma uzantıları engeller) -->
+    <div style="margin-bottom: 20px;">
         <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">E-Posta</label>
-        <input type="email" name="E_Posta" placeholder="E-posta adresiniz" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;">
+        <input type="email" name="E_Posta" placeholder="E-posta adresiniz" required style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;"
+               pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|gov|edu|info|biz|me|tv|cc|com\.tr|net\.tr|org\.tr|edu\.tr|gen\.tr|biz\.tr|info\.tr|av\.tr|dr\.tr|pol\.tr|bel\.tr|mil\.tr|tsk\.tr|k12\.tr|bbs\.tr|tel\.tr|name\.tr|gov\.tr|tr)$"
+               title="Lütfen geçerli ve gerçek bir e-posta adresi giriniz (Örn: örnek@gmail.com).">
     </div>
 
+    <!-- 3. TELEFON: Otomatik boşluk bırakır ve 11 haneli kurumsal formatı zorunlu kılar -->
     <div style="margin-bottom: 20px;">
         <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Telefon</label>
-        <input type="tel" name="Telefon" placeholder="0555 555 55 55" required maxlength="14" style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;" pattern="0[0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}" title="Lütfen telefon numaranızı 0555 555 55 55 formatında 11 hane olarak giriniz." oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^([0-9]{4})([0-9]{3})([0-9]{2})([0-9]{2})$/, '$1 $2 $3 $4').substring(0, 14);">
+        <input type="tel" name="Telefon" placeholder="0555 555 55 55" required maxlength="14" style="width: 100%; padding: 12px; background-color: #111; border: 1px solid #333; color: #fff; border-radius: 4px; box-sizing: border-box;" 
+               pattern="0[0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}" 
+               title="Lütfen telefon numaranızı 0555 555 55 55 formatında 11 hane olarak giriniz." 
+               oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^([0-9]{4})([0-9]{3})([0-9]{2})([0-9]{2})$/, '$1 $2 $3 $4').substring(0, 14);">
     </div>
-
 
     <div style="margin-bottom: 20px;">
         <label style="color: #ffcc00; display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase;">Konu</label>
