@@ -552,9 +552,7 @@ document.getElementById('kdsForm').addEventListener('submit', function(e) {
         if (response.ok) {
             form.reset();
             document.getElementById('basariMesaji').style.display = 'block';
-            setTimeout(function() {
-                document.getElementById('basariMesaji').style.display = 'none';
-            }, 3000);
+           
         }
     })
     .catch(function() {
