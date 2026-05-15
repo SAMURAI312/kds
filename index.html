@@ -534,9 +534,8 @@ html_content = '''<!DOCTYPE html>
         </div>
     </footer>
 
-    <script>
+<script>
 document.getElementById('kdsForm').addEventListener('submit', function(e) {
-    e.preventDefault();
     var form = this;
     var btn = document.getElementById('gonderButon');
     
@@ -550,16 +549,26 @@ document.getElementById('kdsForm').addEventListener('submit', function(e) {
     })
     .then(function(response) {
         if (response.ok) {
+            // BAŞARILI: Formu sıfırla, sayfa geçişine izin ver
             form.reset();
-            document.getElementById('basariMesaji').style.display = 'block';
-           
+            // Formspree yönlendirmeyi halleder
+        } else {
+            // HATA: Formu koru, kullanıcı düzeltsin
+            e.preventDefault();
+            alert('Mesaj gönderilemedi. Lütfen bilgilerinizi kontrol edin.');
         }
-        else (response.ok) {
-            form.reset();
-            document.getElementById('basariMesaji').style.display = 'reset';
-        }
-        );
     })
+    .catch(function() {
+        // BAĞLANTI HATASI: Formu koru
+        e.preventDefault();
+        alert('Bağlantı hatası. Lütfen tekrar deneyin.');
+    })
+    .finally(function() {
+        btn.disabled = false;
+        btn.innerText = 'Mesajı Gönder';
+    });
+});
+</script>
     
 
     
