@@ -461,18 +461,16 @@ html_content = '''<!DOCTYPE html>
 <!-- KONTROL EDEN VE İÇERİĞİ SİLEN GELİŞMİŞ SCRIPT -->
 <script>
 document.getElementById('kdsForm').addEventListener('submit', function(event) {
+    event.preventDefault();
     var form = event.target;
     var buton = document.getElementById('gonderButon');
     
-    // Butonu kilitle
     buton.disabled = true;
     buton.style.opacity = '0.6';
     buton.innerText = 'Gönderiliyor...';
     
-    // Form verilerini hazırla
     var data = new FormData(form);
     
-    // Veriyi Formspree'ye gönder
     fetch(form.action, {
         method: 'POST',
         body: data,
@@ -480,23 +478,19 @@ document.getElementById('kdsForm').addEventListener('submit', function(event) {
     })
     .then(function(response) {
         if (response.ok) {
-            // BAŞARILI: Formu temizle ve mesaj göster
             form.reset();
             document.getElementById('basariMesaji').style.display = 'block';
             setTimeout(function() {
                 document.getElementById('basariMesaji').style.display = 'none';
             }, 3000);
         } else {
-            // BAŞARISIZ: Hata mesajı göster, formu silme
-            alert('Mesaj gönderilemedi. Lütfen bilgilerinizi kontrol edip tekrar deneyin.');
+            alert('Mesaj gönderilemedi. Lütfen bilgilerinizi kontrol edin.');
         }
     })
     .catch(function(error) {
-        // HATA: Formu silme, kullanıcı düzeltsin
-        alert('Bağlantı hatası. Lütfen internet bağlantınızı kontrol edin.');
+        alert('Bağlantı hatası. Lütfen tekrar deneyin.');
     })
     .finally(function() {
-        // Butonu her durumda aktif et
         buton.disabled = false;
         buton.style.opacity = '1';
         buton.innerText = 'Mesajı Gönder';
