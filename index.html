@@ -554,9 +554,10 @@ document.getElementById('kdsForm').addEventListener('submit', function(e) {
             document.getElementById('basariMesaji').style.display = 'block';
            
         }
-        else (
+        else (response.ok) {
             form.reset();
-            document.getElementById('kdsForm').reset();
+            document.getElementById('basariMesaji').style.display = 'reset';
+        }
         );
     })
     
