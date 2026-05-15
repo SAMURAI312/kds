@@ -558,10 +558,7 @@ document.getElementById('kdsForm').addEventListener('submit', function(e) {
     .catch(function() {
         alert('Bağlantı hatası. Lütfen internet bağlantınızı kontrol edin.');
     })
-    .finally(function() {
-        btn.disabled = false;
-        btn.innerText = 'Mesajı Gönder';
-    });
+    
 });
 </script>
 
